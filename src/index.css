@@ -1,0 +1,164 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background: oklch(10% 0.02 260);
+  color: oklch(96% 0.005 260);
+  overflow: hidden;
+}
+
+#root {
+  isolation: isolate;
+}
+
+::selection {
+  background: oklch(72% 0.18 250 / 0.4);
+  color: white;
+}
+
+.font-display {
+  font-family: 'Inter Tight', 'Inter', system-ui, sans-serif;
+  font-feature-settings: 'ss01', 'cv11';
+}
+
+.glow-text {
+  text-shadow: 0 0 40px oklch(72% 0.18 250 / 0.4);
+}
+
+.gradient-text {
+  background: linear-gradient(
+    135deg,
+    oklch(96% 0.005 260) 0%,
+    oklch(72% 0.18 250) 60%,
+    oklch(70% 0.22 295) 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+.grid-bg {
+  background-image:
+    linear-gradient(oklch(72% 0.18 250 / 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, oklch(72% 0.18 250 / 0.04) 1px, transparent 1px);
+  background-size: 64px 64px;
+  background-position: -1px -1px;
+  mask-image: radial-gradient(ellipse at center, black 0%, transparent 80%);
+}
+
+.glass {
+  background: oklch(14% 0.025 260 / 0.6);
+  backdrop-filter: blur(20px) saturate(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(140%);
+  border: 1px solid oklch(96% 0.005 260 / 0.08);
+}
+
+.glass-strong {
+  background: oklch(14% 0.025 260 / 0.85);
+  backdrop-filter: blur(28px) saturate(160%);
+  -webkit-backdrop-filter: blur(28px) saturate(160%);
+  border: 1px solid oklch(96% 0.005 260 / 0.1);
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+.export-root,
+.export-root * {
+  animation: none !important;
+  transition: none !important;
+}
+
+/* ============== NATIVE BROWSER PRINT FALLBACK ============== */
+@media print {
+  @page {
+    size: 20in 11.25in;
+    margin: 0;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  html,
+  body,
+  #root {
+    width: 1920px !important;
+    height: auto !important;
+    overflow: visible !important;
+    background: oklch(10% 0.02 260) !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Hide UI chrome */
+  .screen-only {
+    display: none !important;
+  }
+
+  /* Force every slide visible, neutralize animations */
+  [data-slide-export],
+  .slide-print {
+    width: 1920px !important;
+    height: 1080px !important;
+    page-break-after: always !important;
+    break-after: page !important;
+    position: relative !important;
+    display: block !important;
+    overflow: hidden !important;
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+    left: 0 !important;
+    top: 0 !important;
+  }
+
+  /* Kill any leftover motion */
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    filter: none !important;
+  }
+
+  /* Restore intentional decorative filters where useful */
+  .gradient-text {
+    -webkit-text-fill-color: transparent !important;
+  }
+
+  /* Drop WebGL canvases — captured as black in browser print */
+  canvas {
+    display: none !important;
+  }
+
+  /* Show export container in print mode (fallback path) */
+  .export-root {
+    position: static !important;
+    left: 0 !important;
+    z-index: auto !important;
+  }
+}
