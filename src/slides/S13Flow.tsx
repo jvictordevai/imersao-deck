@@ -3,7 +3,7 @@ import { QRCodeSVG } from 'qrcode.react';
 import { SlideFrame } from '../components/SlideFrame';
 import { fadeUp } from '../lib/motion';
 
-const OPENACADEMY_URL = 'https://openacademy-one.vercel.app';
+const OPENACADEMY_URL = 'https://openacademyai.jvictordev.expert';
 
 const steps = [
   { n: '01', t: 'Claude analisa planilha real', sub: 'Vendas · Financeiro · Operações' },
@@ -79,7 +79,7 @@ export function S13Flow() {
               />
             </div>
             <div className="font-mono text-xs text-ink-300 break-all text-center leading-tight">
-              openacademy-one.vercel.app
+              openacademyai.jvictordev.expert
             </div>
             <div className="font-mono text-[10px] uppercase tracking-wider text-ink-400 text-center">
               Aponte a câmera
